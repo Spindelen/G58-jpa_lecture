@@ -25,4 +25,6 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     List<Student> searchFindByFirstName(@Param("firstName")String firstName);
 
 
+
+
 }
