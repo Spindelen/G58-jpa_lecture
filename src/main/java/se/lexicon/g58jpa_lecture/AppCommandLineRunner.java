@@ -2,6 +2,7 @@ package se.lexicon.g58jpa_lecture;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import se.lexicon.g58jpa_lecture.entity.Address;
 import se.lexicon.g58jpa_lecture.repo.AddressRepository;
 import se.lexicon.g58jpa_lecture.entity.Student;
@@ -18,17 +19,19 @@ public class AppCommandLineRunner implements CommandLineRunner {
         this.addressRepository = addressRepository;
     }
 
+   @Transactional(rollbackFor = Exception.class)
     @Override
     public void run(String... args) throws Exception {
 
         // TODO: Transaction - one unit of work ?
 
-        Student john = studentRepository.save(new Student("John", "Doe", "john@test.com"));
-
         Address stockholm = addressRepository.save(new Address("Nygatan 1", "Stockholm", "12345"));
 
-        john.setAddress(stockholm);
+//        if(true) {throw new Exception("Ops! something Went wrong, Rollback");}
+       // add @Transactional to the method to rollback transaction
 
+        Student john = new Student("John", "Doe", "john@test.com");
+        john.setAddress(stockholm);
         studentRepository.save(john);
 
     }
