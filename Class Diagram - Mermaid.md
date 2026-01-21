@@ -39,5 +39,6 @@ classDiagram
     Student <--> Address : One-To-One
     Course  --> Instructor : Many-To-One
     Student --> Course : Many-To-Many
+    Course <-- Instructor: OneToMany
     
 ````
