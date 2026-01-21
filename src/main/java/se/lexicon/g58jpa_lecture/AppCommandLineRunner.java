@@ -23,6 +23,7 @@ public class AppCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+       /*
        System.out.println("---- WITHOUT CASCADE ----");
 
         Address stockholm = new Address("Nygatan 1", "Stockholm", "12345");
@@ -56,6 +57,7 @@ public class AppCommandLineRunner implements CommandLineRunner {
 
         //Also update an Address object in DB
 //        john.getAddress().setPostalCode("543210");
+*/
 
     }
 
