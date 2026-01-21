@@ -7,6 +7,7 @@ import org.hibernate.proxy.HibernateProxy;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor
@@ -42,11 +43,27 @@ public class Student {
     private Address address;
 
 
+    @ManyToMany
+    @JoinTable(name = "students_courses",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private Set<Course> courses;
+
+
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
+
+    public void enrollInCourse(Course course) {
+        courses.add(course);
+    }
+
+    public void dropCourse(Course course) {
+        courses.remove(course);
+    }
+
 
     @PrePersist
     public void prePersist() {

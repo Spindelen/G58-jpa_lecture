@@ -13,6 +13,7 @@ classDiagram
         - boolean status
         - LocalDateTime createDate
         - Address address
+        - Set~Course~ courses
     }
     class Address {
         - Long id
@@ -37,5 +38,6 @@ classDiagram
     %% Relationships
     Student <--> Address : One-To-One
     Course  --> Instructor : Many-To-One
+    Student --> Course : Many-To-Many
     
 ````

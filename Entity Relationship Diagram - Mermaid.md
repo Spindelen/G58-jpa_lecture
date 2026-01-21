@@ -30,7 +30,15 @@ erDiagram
         BIGINT instructor_id FK "NN"
     }
 
+    STUDENTS_COURSES {
+        VARCHAR student_id FK "NN"
+        BIGINT course_id FK "NN"
+    }
+
 %% Relationships
     STUDENT ||--|| ADDRESS: has_address
     INSTRUCTOR ||--o{ COURSE: teaches
+
+    STUDENT ||--o{ STUDENTS_COURSES: enrolls
+    COURSE ||--o{ STUDENTS_COURSES: has
 ```
